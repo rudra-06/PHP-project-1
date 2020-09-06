@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2020 at 05:44 PM
+-- Generation Time: Sep 06, 2020 at 02:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -106,7 +106,69 @@ CREATE TABLE `mails` (
 --
 
 INSERT INTO `mails` (`id`, `name`, `email_from`, `subject`, `message`) VALUES
-(1, 'tesst', 'sonirdr06@gmail.com', 'test', 'test msg');
+(1, 'tesst', 'sonirdr06@gmail.com', 'test', 'test msg'),
+(2, 'asdfghjkl', 'hiral@siliconbrix.com', 'viva', 'mail via php'),
+(3, 'rudra', 'parmarhiral481@gmail.com', 'viva', 'mail via php for viva'),
+(4, 'rudra', 'sonirdr06@gmail.com', 'html', 'test'),
+(5, 'krtn', 'kirtanpatelx@gmail.com', 'php mail with HTML markup.', 'hi'),
+(6, 'rudrs', 'rudrasoni2000@gmail.com', 'tet', 'duyt'),
+(7, 'ucnewkcu', 'rudrasoni2000@gmail.com', 'ciem', 'ncdece'),
+(8, 'ewwc', 'rudrasoni2000@gmail.com', 'fver', 'ersdcf'),
+(9, 'clsf', 'rudrasoni2000@gmail.com', 'cecdcw', 'fvsecer'),
+(10, 'ceur', 'rudrasoni2000@gmail.com', 'dcad', 'ervrec'),
+(11, 'ceur', 'rudrasoni2000@gmail.com', 'dcad', 'ervrec'),
+(12, 'qqqq', 'rudrasoni2000@gmail.com', 'noind', 'biuiniu'),
+(13, 'cscddsrf', 'rudrasoni2000@gmail.com', 'bsfbgr', 'ntrgbfsrd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mfg_workers`
+--
+
+CREATE TABLE `mfg_workers` (
+  `id` int(11) NOT NULL,
+  `worker_name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mfg_workers`
+--
+
+INSERT INTO `mfg_workers` (`id`, `worker_name`) VALUES
+(1, 'arjun'),
+(2, 'abhijeet');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mfg_work_reciept`
+--
+
+CREATE TABLE `mfg_work_reciept` (
+  `id` int(11) NOT NULL,
+  `reciept_no` varchar(250) NOT NULL,
+  `worker` varchar(250) NOT NULL,
+  `customer_order` varchar(250) NOT NULL,
+  `prd_category` varchar(250) NOT NULL,
+  `prd_metal` varchar(250) NOT NULL,
+  `prd_quality` varchar(250) NOT NULL,
+  `prd_weight` float NOT NULL,
+  `gvn_material_type` varchar(250) NOT NULL,
+  `gvn_material_quality` varchar(250) NOT NULL,
+  `gvn_material_weight` float NOT NULL,
+  `start_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deadline_date` varchar(250) NOT NULL,
+  `completion_date` timestamp NULL DEFAULT NULL,
+  `status` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mfg_work_reciept`
+--
+
+INSERT INTO `mfg_work_reciept` (`id`, `reciept_no`, `worker`, `customer_order`, `prd_category`, `prd_metal`, `prd_quality`, `prd_weight`, `gvn_material_type`, `gvn_material_quality`, `gvn_material_weight`, `start_date`, `deadline_date`, `completion_date`, `status`) VALUES
+(1, '0000000001', '1', 'no', '1', 'gold', '20k', 11, 'gold', '24k', 16, '2020-09-05 18:30:00', '2020-09-13', NULL, 'in work');
 
 -- --------------------------------------------------------
 
@@ -130,11 +192,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `code`, `metal`, `category_id`, `branch_id`, `weight`, `labour`, `price`) VALUES
-(9, 'SLCH1234', 'silver', '2', '1', 12.43, 1200, 8000),
-(10, 'GLS0001', 'gold', '10', '1', 120.98, 50500, 1200000),
-(11, 'SLBRC89', 'gold', '1', '3', 85, 1200, 2340),
-(12, 'SLPSET0011', 'silver', '6', '3', 22, 2200, 4444),
-(13, 'GR012', 'gold', '8', '1', 5.65, 1200, 5000);
+(10, 'GLS0001', 'gold', '10', '3', 120.98, 50500, 1200000),
+(11, 'SLBRC89', 'silver', '1', '1', 85, 1200, 2340),
+(12, 'SLPSET0011', 'silver', '6', '1', 22, 2200, 4444),
+(14, 'GER0012', 'gold', '3', '1', 2, 564, 9798),
+(15, 'GR0012', 'gold', '8', '1', 12.4, 2313, 4123);
 
 -- --------------------------------------------------------
 
@@ -188,6 +250,18 @@ ALTER TABLE `mails`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mfg_workers`
+--
+ALTER TABLE `mfg_workers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mfg_work_reciept`
+--
+ALTER TABLE `mfg_work_reciept`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -225,13 +299,25 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `mails`
 --
 ALTER TABLE `mails`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `mfg_workers`
+--
+ALTER TABLE `mfg_workers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `mfg_work_reciept`
+--
+ALTER TABLE `mfg_work_reciept`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `superuser`
